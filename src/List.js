@@ -1,36 +1,34 @@
 import React, {Component} from 'react'
 import Item from './Item'
+import ItemForm from './ItemForm'
 
 class List extends Component {
 
     constructor(props){
       super(props)
-      this.state = {list: ["Coffee", "Ice Cream"], otherKey: "Value"}
+      this.state = {list: ["Coffee", "Ice Cream"]}
     }
 
-    handleClick() {
-      this.setState({list: [...this.state.list, "Sugar"]})
-      this.setState({list: [...this.state.list, "Cereal"]})
-    }
+    handleSubmit(formData){
 
-    getInfoFromItem(info){
-      this.setState((state, props) => {
-        return {otherKey: info}
+      this.setState((state) => {
+
+        return {list: [...state.list, formData.itemName]}
       })
     }
 
-  render() {
 
-    return (
-      <div>
-        <button onClick={this.handleClick.bind(this)}> Click me!!!</button>
-        {this.state.otherKey}
-        <ul>
-           {this.state.list.map(item => <Item callbackFn={this.getInfoFromItem.bind(this)} item={item}/>)}
-        </ul>
-      </div>
-    )
-  }
+    render() {
+
+      return (
+        <div>
+          <ItemForm submitForm={this.handleSubmit.bind(this)}/>
+          <ul>
+             {this.state.list.map(item => <Item item={item}/>)}
+          </ul>
+        </div>
+      )
+    }
 
 }
 
