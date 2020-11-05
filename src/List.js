@@ -8,6 +8,11 @@ class List extends Component {
       this.state = {list: ["Coffee", "Ice Cream"], otherKey: "Value"}
     }
 
+    handleClick() {
+      this.setState({list: [...this.state.list, "Sugar"]})
+      this.setState({list: [...this.state.list, "Cereal"]})
+    }
+
     getInfoFromItem(info){
       this.setState((state, props) => {
         return {otherKey: info}
@@ -18,6 +23,7 @@ class List extends Component {
 
     return (
       <div>
+        <button onClick={this.handleClick.bind(this)}> Click me!!!</button>
         {this.state.otherKey}
         <ul>
            {this.state.list.map(item => <Item callbackFn={this.getInfoFromItem.bind(this)} item={item}/>)}
