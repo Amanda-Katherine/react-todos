@@ -1,14 +1,23 @@
 import React, {Component} from 'react'
-import List from './List'
+import Lists from './Lists'
 
 class App extends Component {
+
+  constructor(){
+      super()
+      this.state = {showLists: true}
+    }
+
+    handleClick(){
+      this.setState(prevState => ({showLists: !prevState.showLists}))
+    }
 
   render() {
     return (
       <div className="App">
-        <List  />
+        <button onClick={this.handleClick.bind(this)}>Toggle Lists</button>
+        {this.state.showLists ? <Lists /> : null}
       </div>
-
     );
   }
 
