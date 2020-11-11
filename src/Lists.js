@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, {PureComponent, Fragment} from 'react'
 import List from './List'
 import ListForm from './ListForm'
 
-class Lists extends Component {
+class Lists extends PureComponent {
 
   constructor(props) {
       super(props)
@@ -17,7 +17,6 @@ class Lists extends Component {
       fetch("http://localhost:3000/lists")
       .then(response => response.json())
       .then(lists => {this.setState({lists: lists})})
-      this.setState((prevState) => ({loading: !prevState.loading}))
 
     }
 
@@ -44,12 +43,12 @@ class Lists extends Component {
 
     render() {
       return (
-        <div>
-          <ListForm submitForm={this.handleSubmit}/>
-          <ul>
-             {this.state.lists.map(list => <List list={list}/>)}
-          </ul>
-        </div>
+          <>
+            <ListForm submitForm={this.handleSubmit}/>
+            <ul>
+               {this.state.lists.map(list => <Fragment key={list.name}> <List list={list}/> </Fragment>)}
+            </ul>
+          </>
       )
     }
 

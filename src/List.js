@@ -1,17 +1,20 @@
 import React, {Component} from 'react'
 
-export default class List extends Component {
+// export default class List extends Component {
+//
+//
+//   render() {
+//
+//     return (
+//         <li>{this.props.list.name}</li>
+//     )
+//
+//   }
+//
+//
+// }
 
-
-  render() {
-
-    return (
-      <div>
-        <li>{this.props.list.name}</li>
-      </div>
-    )
-
-  }
-
+export default function List(props){
+    return <li>{props.list.name}</li>
 
 }
