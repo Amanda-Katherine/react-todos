@@ -16,7 +16,6 @@ export default class ListForm extends Component {
 
     handleChange(event){
       let name = event.target.name
-      // this.setState({itemName: event.target.value})
       this.setState({
         [name]: event.target.value
       })
