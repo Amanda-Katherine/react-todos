@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import Lists from './Lists'
+import ListContainer from './ListContainer'
+import NavBar from './NavBar'
 
 // class App extends Component {
 //
@@ -16,7 +17,10 @@ import Lists from './Lists'
 function App(){
 
   return (
-        <Lists />
+        <>
+          <NavBar/>
+          <ListContainer />
+        </>
   );
 }
 

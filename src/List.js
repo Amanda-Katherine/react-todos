@@ -15,6 +15,7 @@ import React, {Component} from 'react'
 // }
 
 export default function List(props){
-    return <li>{props.list.name}</li>
+    // const list = props.lists.find(list => list.id === parseInt(props.match.params.id))
+    return <li>{props.list && props.list.name}</li>
 
 }
