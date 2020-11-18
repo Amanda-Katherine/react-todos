@@ -17,6 +17,3 @@ class Lists extends PureComponent {
 
 
 export default Lists
-
-
-// <Fragment key={list.name}> <List list={list}/> </Fragment>

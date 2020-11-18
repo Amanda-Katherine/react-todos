@@ -4,6 +4,7 @@ import List from './List'
 import ListForm from './ListForm'
 import {Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
+import fetchLists from './actions/fetchLists'
 
 class ListContainer extends PureComponent {
 
@@ -16,12 +17,15 @@ class ListContainer extends PureComponent {
   //   }
 
     //
-    // componentDidMount() {
-    //   fetch("http://localhost:3000/lists")
-    //   .then(response => response.json())
-    //   .then(lists => {this.setState({lists: lists})})
-    //
-    // }
+    componentDidMount() {
+      // fetch("http://localhost:3000/lists")
+      // .then(response => response.json())
+      // .then(lists => {this.setState({lists: lists})})
+        const lists = [{name: "Grocery", id: 1}, {name: "Work", id: 2}, {name: "Errands", id: 3}]
+        // const action = {type: "FETCH_LISTS", payload: lists}
+        this.props.fetchLists(lists)
+        // fetchLists(lists)
+    }
 
 
     // handleSubmit(formData){
@@ -52,7 +56,7 @@ class ListContainer extends PureComponent {
                 <Lists lists={this.props.lists}/>
               </Route>
               <Route exact path="/lists/new">
-                <ListForm submitForm={this.handleSubmit}/>
+                <ListForm />
               </Route>
               <Route exact path="/lists/:id" render={(routerProps) => <List {...routerProps } list={this.props.lists.find(list => list.id === parseInt(routerProps.match.params.id))} />}/>
             </Switch>
@@ -63,11 +67,19 @@ class ListContainer extends PureComponent {
 
 }
 
-const mapStateToProps = state => {
-  
+const mapStateToProps = ({lists}) => {
+  // const lists = state.lists
     return {
-      lists: state.lists
+      lists
     }
 }
 
-export default connect(mapStateToProps)(ListContainer)
+// const mapDispatchToProps = dispatch => {
+//
+//   return {
+//     fetchLists: (lists) => dispatch({type: "FETCH_LISTS", payload: lists})
+//   }
+//
+// }
+
+export default connect(mapStateToProps, {fetchLists: fetchLists})(ListContainer)

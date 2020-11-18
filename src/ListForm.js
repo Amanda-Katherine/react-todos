@@ -1,18 +1,27 @@
 import React, {Component} from 'react'
 import {Redirect, withRouter} from 'react-router-dom'
-
+import {connect} from 'react-redux'
+import addList from './actions/addList'
+import editList from './actions/editList'
 class ListForm extends Component {
 
     constructor(props){
       super(props)
-      this.state = {listName: "", loggedIn: true}
+      this.state = {name: (this.props.list ? this.props.list.name : ""), id: (this.props.list ? this.props.list.id : Math.floor(Math.random() * Math.floor(100000000)))}
     }
 
     handleSubmit(event) {
+      console.log("handlesubmit")
       event.preventDefault()
+      if (!this.props.list) {
+          this.props.addList(this.state)
+      } else {
+        this.props.editList(this.state)
+      }
 
-      this.props.submitForm(this.state)
-      this.setState({listName: ""})
+
+      // this.props.submitForm(this.state)
+      this.setState({name: "", id: ""})
       this.props.history.push("/lists")
     }
 
@@ -24,16 +33,14 @@ class ListForm extends Component {
     }
 
     redirectOrRenderForm(){
-      if (this.state.loggedIn) {
+
         return (
           <form onSubmit={(event) => this.handleSubmit(event)}>
-            <input type="text" onChange={(event) => this.handleChange(event)} value={this.state.listName} name="listName"/>
+            <input type="text" onChange={(event) => this.handleChange(event)} value={this.state.name} name="name"/>
             <input type="submit"/>
           </form>
         )
-      } else {
-          return <Redirect to="/lists" />
-      }
+
     }
 
   render() {
@@ -49,4 +56,4 @@ class ListForm extends Component {
 
 }
 
-export default withRouter(ListForm)
+export default withRouter(connect(null, {addList, editList})(ListForm))
