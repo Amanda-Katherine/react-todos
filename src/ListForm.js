@@ -7,7 +7,7 @@ class ListForm extends Component {
 
     constructor(props){
       super(props)
-      this.state = {name: (this.props.list ? this.props.list.name : ""), id: (this.props.list ? this.props.list.id : Math.floor(Math.random() * Math.floor(100000000)))}
+      this.state = {name: (this.props.list ? this.props.list.name : ""), id: (this.props.list ? this.props.list.id : "")}
     }
 
     handleSubmit(event) {

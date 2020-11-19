@@ -21,28 +21,28 @@ class ListContainer extends PureComponent {
       // fetch("http://localhost:3000/lists")
       // .then(response => response.json())
       // .then(lists => {this.setState({lists: lists})})
-        const lists = [{name: "Grocery", id: 1}, {name: "Work", id: 2}, {name: "Errands", id: 3}]
+        // const lists = [{name: "Grocery", id: 1}, {name: "Work", id: 2}, {name: "Errands", id: 3}]
         // const action = {type: "FETCH_LISTS", payload: lists}
-        this.props.fetchLists(lists)
+        this.props.fetchLists()
         // fetchLists(lists)
     }
 
 
     // handleSubmit(formData){
-    //   const list = {name: formData.listName}
-    //   const options = {
-    //     method: "POST",
-    //     headers: {"Content-Type": "application/json", "Accept": "application/json"},
-    //     body: JSON.stringify({list})
-    //   }
-    //
-    //   fetch("http://localhost:3000/lists", options)
-    //   .then(r => r.json())
-    //   .then(list => {
-    //     this.setState((prevState) => {
-    //       return {lists: [...prevState.lists, list]}
-    //     })
-    //   })
+      // const list = {name: formData.listName}
+      // const options = {
+      //   method: "POST",
+      //   headers: {"Content-Type": "application/json", "Accept": "application/json"},
+      //   body: JSON.stringify({list})
+      // }
+      //
+      // fetch("http://localhost:3000/lists", options)
+      // .then(r => r.json())
+      // .then(list => {
+      //   this.setState((prevState) => {
+      //     return {lists: [...prevState.lists, list]}
+      //   })
+      // })
     //
     //
     // }
@@ -77,7 +77,11 @@ const mapStateToProps = ({lists}) => {
 // const mapDispatchToProps = dispatch => {
 //
 //   return {
-//     fetchLists: (lists) => dispatch({type: "FETCH_LISTS", payload: lists})
+//     fetchLists: () => {
+//       fetch("http://localhost:3000/lists")
+//       .then(response => response.json())
+//       .then(lists => { dispatch({type: "FETCH_LISTS", payload: lists})})
+//     }
 //   }
 //
 // }
